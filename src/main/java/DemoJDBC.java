@@ -14,7 +14,7 @@ public class DemoJDBC {
         String url = "jdbc:postgresql://localhost:5432/Student";
         String uname = "postgres";
         String pass = "suhail786";
-        String sql = "select sname from student where sid = 3";
+        String sql = "select sname from student where sid = 2";
 
         Class.forName("org.postgresql.Driver");
         Connection conn = DriverManager.getConnection(url,uname, pass);
@@ -22,9 +22,13 @@ public class DemoJDBC {
         System.out.println("Connection established");
 
         Statement st = conn.createStatement();
-        ResultSet rs = st.executeQuery(sql);
 
-        System.out.println(rs.next());
+        ResultSet rs = st.executeQuery(sql);
+        // System.out.println(rs.next());
+        rs.next();
+        String name = rs.getString("sname");
+        System.out.println("Name of the student is " + name);
+
         conn.close();
         System.out.println("Connection closed");
 
