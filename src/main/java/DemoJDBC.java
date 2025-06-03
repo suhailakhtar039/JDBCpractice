@@ -14,7 +14,7 @@ public class DemoJDBC {
         String url = "jdbc:postgresql://localhost:5432/Student";
         String uname = "postgres";
         String pass = "suhail786";
-        String sql = "select sname from student where sid = 2";
+        String sql = "select sname from student where sid = 1";
 
         Class.forName("org.postgresql.Driver");
         Connection conn = DriverManager.getConnection(url,uname, pass);
