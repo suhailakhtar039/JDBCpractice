@@ -1,36 +1,20 @@
-import java.sql.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 public class DemoJDBC {
-    public static void main(String[] args) throws Exception {
-        /*
-        import package
-        load and register
-        create connection
-        create statement
-        execute statement
-        process the results
-        close
-        */
-        String url = "jdbc:postgresql://localhost:5432/Student";
-        String uname = "postgres";
-        String pass = "suhail786";
-        String sql = "select sname from student where sid = 1";
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        s1.setsName("Suhail Akhtar");
+        s1.setAge(25);
+        s1.setRollNo(1);
 
-        Class.forName("org.postgresql.Driver");
-        Connection conn = DriverManager.getConnection(url,uname, pass);
+        Configuration cfg = new Configuration();
 
-        System.out.println("Connection established");
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.openSession();
 
-        Statement st = conn.createStatement();
 
-        ResultSet rs = st.executeQuery(sql);
-        // System.out.println(rs.next());
-        rs.next();
-        String name = rs.getString("sname");
-        System.out.println("Name of the student is " + name);
-
-        conn.close();
-        System.out.println("Connection closed");
 
     }
 }
